@@ -9,7 +9,7 @@
   delay: "{{ retry_stagger | random + 3 }}"
   when:
     - ansible_pkg_mgr == 'yum'
-    - ansible_distribution != 'RedHat'
+    - ansible_os_distribution != 'RedHat'
     - not is_atomic
 
 - name: Expire management cache (YUM) for Updation - Redhat
@@ -20,7 +20,7 @@
   delay: "{{ retry_stagger | random + 3 }}"
   when:
     - ansible_pkg_mgr == 'yum'
-    - ansible_distribution == 'RedHat'
+    - ansible_os_distribution == 'RedHat'
     - not is_atomic
   tags: bootstrap-os
 
@@ -32,7 +32,7 @@
   delay: "{{ retry_stagger | random + 3 }}"
   when:
     - ansible_pkg_mgr == 'yum'
-    - ansible_distribution == 'RedHat'
+    - ansible_os_distribution == 'RedHat'
     - expire_cache_output.rc == 0
     - not is_atomic
   tags: bootstrap-os
